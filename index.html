@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RA 9165</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+<body class="bg-yellow-50 min-h-screen flex flex-col justify-between items-center font-sans text-gray-800">
+
+  <header class="w-full bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-400 text-center py-6 shadow-lg relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-opacity-20 bg-white" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.2\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+    <h1 class="text-4xl font-extrabold py-2 tracking-wide text-white drop-shadow-md relative z-10 animate__animated animate__rubberBand">
+      RA 9165 Violation Game
+    </h1>
+  </header>
+
+  <main class="flex-1 w-full flex flex-col items-center justify-center px-4 py-8">
+    <div class="bg-white max-w-2xl w-full rounded-3xl shadow-2xl border-4 pulse-border p-8 my-8 space-y-6 relative card-hover">
+
+      <div id="categorySelect" class="space-y-6 text-center animate__animated animate__fadeIn">
+        <h2 class="text-2xl font-bold text-yellow-800 bg-yellow-100 inline-block px-6 py-2 rounded-full">Chose type of Violation</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+          <button onclick="selectCategory('manufacture')" class="btn-bounce p-4 bg-gradient-to-br from-pink-400 to-pink-600 hover:from-pink-500 hover:to-pink-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2"></span>
+            <span>Manufacture</span>
+            <span class="text-xs mt-1"></span>
+          </button>
+          
+          <button onclick="selectCategory('distribution')" class="btn-bounce p-4 bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2"></span>
+            <span>Distribution</span>
+            <span class="text-xs mt-1"></span>
+          </button>
+          
+          <button onclick="selectCategory('possession')" class="btn-bounce p-4 bg-gradient-to-br from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2"></span>
+            <span>Possession</span>
+            <span class="text-xs mt-1"></span>
+          </button>
+          
+          <button onclick="selectCategory('use')" class="btn-bounce p-4 bg-gradient-to-br from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2"></span>
+            <span>Use</span>
+            <span class="text-xs mt-1"></span>
+          </button>
+          
+          <button onclick="selectCategory('paraphernalia')" class="btn-bounce p-4 bg-gradient-to-br from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2"></span>
+            <span>Paraphernalia</span>
+            <span class="text-xs mt-1"></span>
+          </button>
+          
+          <button onclick="selectCategory('other')" class="btn-bounce p-4 bg-gradient-to-br from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2"></span>
+            <span>Other</span>
+            <span class="text-xs mt-1"></span>
+          </button>
+        </div>
+      </div>
+
+      <div id="questionContainer" class="space-y-6 hidden animate__animated animate__fadeIn">
+        <div class="bg-yellow-100 p-4 rounded-xl border-2 border-dashed border-yellow-400">
+          <div id="question" class="text-xl font-bold leading-relaxed text-yellow-800 italic tracking-wide text-center"></div>
+        </div>
+        <div id="options" class="flex flex-wrap justify-center gap-4"></div>
+      </div>
+
+
+      <div id="result" class="hidden animate__animated animate__bounceIn flex flex-col items-center space-y-6">
+        <div class="flex items-center justify-center w-24 h-24 bg-red-100 rounded-full mb-2">
+          <span class="text-5xl wiggle">⚖️</span>
+        </div>
+        <h2 class="text-3xl font-bold text-red-600 bg-red-100 px-6 py-2 rounded-full">Your Penalty</h2>
+        <div id="penaltyDetails" class="text-lg text-gray-700 px-6 py-4 bg-gray-50 rounded-xl border-2 border-gray-200 text-center"></div>
+        <button id="restart" onclick="restartSystem()" class="hidden mt-6 px-8 py-3 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full shadow-lg hover:from-pink-600 hover:to-red-600 transition duration-200 transform hover:scale-105 font-bold">
+          Try Another Crime!
+        </button>
+      </div>
+
+    </div>
+    
+    <div class="bg-blue-100 max-w-2xl w-full rounded-xl p-4 mb-8 shadow-md border-2 border-blue-300">
+      <h3 class="font-bold text-blue-800 flex items-center">
+        <span class="text-xl mr-2">💡</span> Random Fun Fact:
+      </h3>
+      <p id="fact-text" class="text-blue-700 italic"></p>
+    </div>
+  </main>
+
+  <footer class="w-full bg-gradient-to-r from-yellow-300 via-amber-300 to-orange-300 text-center py-4 text-gray-700 shadow-inner">
+    <p class="font-medium">RA 9165 Interactive Viloations Game</p>
+    <p class="text-xs mt-1">Manalo, Dulce, Sereno, Borja | CS301</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
