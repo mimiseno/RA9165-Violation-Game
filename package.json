@@ -1,22 +1,15 @@
 {
   "name": "ra9165-game",
   "version": "1.0.0",
-  "main": "index.html",
+  "description": "RA 9165 Interactive Violations Game",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve",
-    "build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"
+    "start": "serve -s .",
+    "build": "echo 'No build required'"
   },
   "dependencies": {
     "serve": "^14.2.1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.7"
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
