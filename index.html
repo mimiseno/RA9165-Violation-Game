@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,46 +19,55 @@
     </h1>
   </header>
 
-  <main class="flex-1 w-full flex flex-col items-center justify-center px-4 py-8">
-    <div class="bg-white max-w-2xl w-full rounded-3xl shadow-2xl border-4 pulse-border p-8 my-8 space-y-6 relative card-hover">
+   <main class="flex-1 w-full flex flex-col items-center justify-center px-4 py-8">
+      <div class="bg-white max-w-2xl w-full rounded-3xl shadow-2xl border-4 pulse-border p-8 my-8 space-y-6 relative card-hover">
+      <!-- Initial Violation Question -->
+            <div id="violationQuestion" class="space-y-6 text-center animate__animated animate__fadeIn">
+                <h2 class="text-2xl font-bold text-yellow-800 bg-yellow-100 inline-block px-6 py-2 rounded-full">Did someone commit a violation?</h2>
+                <div class="grid grid-cols-2 gap-6 mt-8">
+                    <button onclick="answerViolation('yes')" class="btn-bounce p-6 bg-gradient-to-br from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+                        <span class="text-2xl font-bold">YES</span>
+                    </button>
+                    <button onclick="answerViolation('no')" class="btn-bounce p-6 bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+                        <span class="text-2xl font-bold">NO</span>
+                    </button>
+                </div>
+            </div>
 
-      <div id="categorySelect" class="space-y-6 text-center animate__animated animate__fadeIn">
-        <h2 class="text-2xl font-bold text-yellow-800 bg-yellow-100 inline-block px-6 py-2 rounded-full">Chose type of Violation</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-          <button onclick="selectCategory('manufacture')" class="btn-bounce p-4 bg-gradient-to-br from-pink-400 to-pink-600 hover:from-pink-500 hover:to-pink-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
-            <span class="text-3xl mb-2"></span>
-            <span>Manufacture</span>
-            <span class="text-xs mt-1"></span>
+      <!-- Congratulations Message -->
+      <div id="congratsMessage" class="hidden space-y-6 text-center animate__animated animate__bounceIn">
+        <div class="flex items-center justify-center w-24 h-24 bg-green-100 rounded-full mx-auto mb-4">
+          <span class="text-5xl wiggle">🎉</span>
+        </div>
+        <h2 class="text-3xl font-bold text-green-600">Congratulations!</h2>
+        <p class="text-lg text-gray-700">Thank you for being a law-abiding citizen.</p>
+        <button onclick="restartSystem()" class="mt-6 px-8 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full shadow-lg hover:from-green-600 hover:to-teal-600 transition duration-200 transform hover:scale-105 font-bold">
+          Try Again
+        </button>
+      </div>
+
+      <!-- Category Selection -->
+          <div id="categorySelect" class="hidden space-y-6 text-center animate__animated animate__fadeIn">
+              <h2 class="text-2xl font-bold text-yellow-800 bg-yellow-100 inline-block px-6 py-2 rounded-full">Choose type of Violation</h2>
+              <div id="categoryOptions" class="grid grid-cols-1 gap-4 mt-6">
+          <button onclick="selectCategory('dangerous_drugs')" class="btn-bounce p-4 bg-gradient-to-br from-pink-400 to-pink-600 hover:from-pink-500 hover:to-pink-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2">💊</span>
+            <span>Dangerous Drugs</span>
           </button>
           
-          <button onclick="selectCategory('distribution')" class="btn-bounce p-4 bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
-            <span class="text-3xl mb-2"></span>
-            <span>Distribution</span>
-            <span class="text-xs mt-1"></span>
+          <button onclick="selectCategory('manufacturing')" class="btn-bounce p-4 bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2">🏭</span>
+            <span>Manufacturing & Distribution</span>
           </button>
           
-          <button onclick="selectCategory('possession')" class="btn-bounce p-4 bg-gradient-to-br from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
-            <span class="text-3xl mb-2"></span>
-            <span>Possession</span>
-            <span class="text-xs mt-1"></span>
+          <button onclick="selectCategory('paraphernalia')" class="btn-bounce p-4 bg-gradient-to-br from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2">🧪</span>
+            <span>Drug Paraphernalia</span>
           </button>
           
-          <button onclick="selectCategory('use')" class="btn-bounce p-4 bg-gradient-to-br from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
-            <span class="text-3xl mb-2"></span>
-            <span>Use</span>
-            <span class="text-xs mt-1"></span>
-          </button>
-          
-          <button onclick="selectCategory('paraphernalia')" class="btn-bounce p-4 bg-gradient-to-br from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
-            <span class="text-3xl mb-2"></span>
-            <span>Paraphernalia</span>
-            <span class="text-xs mt-1"></span>
-          </button>
-          
-          <button onclick="selectCategory('other')" class="btn-bounce p-4 bg-gradient-to-br from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
-            <span class="text-3xl mb-2"></span>
-            <span>Other</span>
-            <span class="text-xs mt-1"></span>
+          <button onclick="selectCategory('other')" class="btn-bounce p-4 bg-gradient-to-br from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white rounded-xl shadow-md transform transition-all duration-200 flex flex-col items-center">
+            <span class="text-3xl mb-2">⚖️</span>
+            <span>Other Violations</span>
           </button>
         </div>
       </div>
@@ -70,26 +80,26 @@
       </div>
 
 
-      <div id="result" class="hidden animate__animated animate__bounceIn flex flex-col items-center space-y-6">
-        <div class="flex items-center justify-center w-24 h-24 bg-red-100 rounded-full mb-2">
-          <span class="text-5xl wiggle">⚖️</span>
-        </div>
-        <h2 class="text-3xl font-bold text-red-600 bg-red-100 px-6 py-2 rounded-full">Your Penalty</h2>
-        <div id="penaltyDetails" class="text-lg text-gray-700 px-6 py-4 bg-gray-50 rounded-xl border-2 border-gray-200 text-center"></div>
-        <button id="restart" onclick="restartSystem()" class="hidden mt-6 px-8 py-3 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full shadow-lg hover:from-pink-600 hover:to-red-600 transition duration-200 transform hover:scale-105 font-bold">
-          Try Another Crime!
-        </button>
+          <!-- Results -->
+          <div id="result" class="hidden animate__animated animate__bounceIn flex flex-col items-center space-y-6">
+              <div class="flex items-center justify-center w-24 h-24 bg-red-100 rounded-full mb-2">
+                  <span class="text-5xl wiggle">⚖️</span>
+              </div>
+              <h2 class="text-3xl font-bold text-red-600 bg-red-100 px-6 py-2 rounded-full">Your Penalty</h2>
+              <div id="penaltyDetails" class="text-lg text-gray-700 px-6 py-4 bg-gray-50 rounded-xl border-2 border-gray-200 text-center"></div>
+              <button id="restart" onclick="restartSystem()" class="hidden mt-6 px-8 py-3 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full shadow-lg hover:from-pink-600 hover:to-red-600 transition duration-200 transform hover:scale-105 font-bold">
+                  Try Another Crime!
+              </button>
+          </div>
       </div>
-
-    </div>
     
-    <div class="bg-blue-100 max-w-2xl w-full rounded-xl p-4 mb-8 shadow-md border-2 border-blue-300">
-      <h3 class="font-bold text-blue-800 flex items-center">
-        <span class="text-xl mr-2">💡</span> Random Fun Fact:
-      </h3>
-      <p id="fact-text" class="text-blue-700 italic"></p>
-    </div>
-  </main>
+        <div class="bg-blue-100 max-w-2xl w-full rounded-xl p-4 mb-8 shadow-md border-2 border-blue-300">
+            <h3 class="font-bold text-blue-800 flex items-center">
+                <span class="text-xl mr-2">💡</span> Random Fun Fact:
+            </h3>
+            <p id="fact-text" class="text-blue-700 italic"></p>
+        </div>
+    </main>
 
   <footer class="w-full bg-gradient-to-r from-yellow-300 via-amber-300 to-orange-300 text-center py-4 text-gray-700 shadow-inner">
     <p class="font-medium">RA 9165 Interactive Viloations Game</p>
