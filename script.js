@@ -60,7 +60,6 @@ const categories = [
         ]
     },
     {
-        id: 'other',
         id: 'paraphernalia',
         name: 'Drug Paraphernalia',
         general: 'Have you ever possessed or handled tools used for taking drugs?',
@@ -73,6 +72,7 @@ const categories = [
         ]
     },
     {
+        id: 'other',
         name: 'Other Violations',
         general: 'Have you been involved in other drug-related activities?',
         questions: [
